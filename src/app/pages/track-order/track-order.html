@@ -1,0 +1,64 @@
+<div class="card p-4 shadow-lg mx-auto mt-4" style="max-width: 700px;">
+  <h3 class="text-center text-primary mb-4">Seguimiento de Paquete</h3>
+
+  <!-- Formulario de búsqueda -->
+  <form [formGroup]="searchForm" (ngSubmit)="searchOrder()">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        formControlName="trackingCode"
+        class="form-control"
+        placeholder="Ingrese el código de rastreo"
+      />
+      <button class="btn btn-primary" type="submit">Buscar</button>
+    </div>
+  </form>
+
+  <!-- Datos del paquete -->
+  <div *ngIf="foundOrder" class="text-light">
+    <h5 class="text-info">Detalles del Paquete</h5>
+    <p><strong>Remitente:</strong> {{ foundOrder.name }}</p>
+    <p><strong>Dirección:</strong> {{ foundOrder.address }}</p>
+    <p><strong>Correo electrónico:</strong> {{ foundOrder.email }}</p>
+    <p><strong>Estado actual:</strong> {{ foundOrder.status }}</p>
+
+    <h6 class="mt-4">Historial de Actualizaciones</h6>
+
+    <!-- Tabla (vista escritorio) -->
+    <div class="table-responsive d-none d-md-block">
+      <table class="table table-dark table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Comentario</th>
+            <th>Responsable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of foundOrder.updates">
+            <td>{{ u.date }}</td>
+            <td>{{ u.status }}</td>
+            <td>{{ u.comment }}</td>
+            <td>{{ u.responsible }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tarjetas (vista móvil) -->
+    <div class="d-md-none">
+      <div *ngFor="let u of foundOrder.updates" class="bg-secondary rounded p-2 mb-2">
+        <p><strong>Fecha:</strong> {{ u.date }}</p>
+        <p><strong>Estado:</strong> {{ u.status }}</p>
+        <p><strong>Comentario:</strong> {{ u.comment }}</p>
+        <p><strong>Responsable:</strong> {{ u.responsible }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sin resultados -->
+  <div *ngIf="!foundOrder && searchForm.touched" class="text-center text-danger mt-4">
+    No se encontró ninguna orden con ese código.
+  </div>
+</div>

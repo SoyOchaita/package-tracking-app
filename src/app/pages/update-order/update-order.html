@@ -1,0 +1,50 @@
+<div class="card p-4 shadow-lg mx-auto mt-4" style="max-width: 600px;">
+  <h3 class="text-center text-primary mb-4">Actualizar Orden</h3>
+
+  <!-- Buscar orden -->
+  <form [formGroup]="searchForm" (ngSubmit)="searchOrder()" class="mb-3">
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="trackingCode"
+        placeholder="Ingrese el código de rastreo"
+      />
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+  </form>
+
+  <!-- Mostrar información de la orden -->
+  <div *ngIf="orderFound" class="mt-3">
+    <p><strong>Remitente:</strong> {{ orderFound.name }}</p>
+    <p><strong>Estado actual:</strong> <span class="text-info">{{ orderFound.status }}</span></p>
+  </div>
+
+  <!-- Formulario de actualización -->
+  <form *ngIf="orderFound" [formGroup]="updateForm" (ngSubmit)="submitUpdate()" class="mt-4">
+    <div class="mb-3">
+      <label class="form-label">Nuevo estado</label>
+      <select formControlName="status" class="form-select">
+        <option value="" disabled selected>Seleccione el siguiente estado</option>
+        <option *ngFor="let s of getAvailableStates()" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Comentario</label>
+      <textarea formControlName="comment" class="form-control" rows="2" placeholder="Entre 20 y 40 caracteres"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Responsable</label>
+      <input formControlName="responsible" class="form-control" placeholder="Persona responsable" />
+    </div>
+
+    <button type="submit" class="btn btn-success w-100 mt-3">Guardar Cambios</button>
+  </form>
+
+  <!-- Sin orden encontrada -->
+  <div *ngIf="!orderFound && searchForm.touched" class="text-center text-danger mt-4">
+    No se encontró ninguna orden con ese código.
+  </div>
+</div>

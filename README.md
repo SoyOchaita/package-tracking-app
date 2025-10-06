@@ -1,59 +1,138 @@
-# PackageTrackingApp
+# 📦 Package Tracking App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.4.
+This project is a **responsive Angular web application** that simulates a basic package tracking system.
+It allows users to create delivery orders, update their delivery status, and track shipments following a strict process flow.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Features
 
-```bash
-ng serve
+* Create new orders with validation (sender name, address, email, description).
+* Generate a unique tracking code (12 random letters, no numbers).
+* Update package status according to the defined workflow:
+
+  * **Creado → En preparación → En tránsito → Entregado / No entregado**
+* Track package history with full update records.
+* Responsive dark theme interface using **Bootstrap 5**.
+* Two layouts: desktop and mobile.
+
+---
+
+## 🧹 Technologies Used
+
+| Tool                | Purpose                              |
+| ------------------- | ------------------------------------ |
+| **Angular 17+**     | Main front-end framework             |
+| **TypeScript**      | Strongly-typed scripting language    |
+| **Bootstrap 5.3**   | UI design and responsive layout      |
+| **HTML5 / CSS3**    | Core web technologies                |
+| **Node.js / npm**   | Dependency management                |
+| *(Optional)* Docker | Containerized setup (for deployment) |
+
+---
+
+## 🧱 Project Structure
+
+```
+package-tracking-app/
+│
+├── src/
+│   ├── app/
+│   │   ├── pages/
+│   │   │   ├── create-order/
+│   │   │   ├── update-order/
+│   │   │   └── track-order/
+│   │   ├── services/
+│   │   │   └── order.ts
+│   │   └── app.ts / app.html
+│   ├── assets/
+│   └── styles.css
+│
+├── angular.json
+├── package.json
+├── README.md
+└── .gitignore
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## ⚙️ Installation Instructions
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 1️⃣ Clone the repository
 
 ```bash
-ng generate --help
+git clone https://github.com/SoyOchaita/package-tracking-app.git
+cd package-tracking-app
 ```
 
-## Building
-
-To build the project run:
+### 2️⃣ Install dependencies
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 3️⃣ Run the Angular development server
 
 ```bash
-ng test
+ng serve -o
 ```
 
-## Running end-to-end tests
+> The app will open automatically in your browser at
+> **[http://localhost:4200](http://localhost:4200)**
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## 💻 How to Use
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 🟢 Create Order
 
-## Additional Resources
+* Go to **"Crear Orden"**.
+* Enter sender name, full address, valid Gmail or Outlook email, and description.
+* Press **Create Order** to register.
+* A tracking code will be generated automatically and can be copied to the clipboard.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 🟡 Update Order
+
+* Go to **"Actualizar Orden"**.
+* Enter the tracking code to find the package.
+* Change the status following the allowed flow:
+
+  * *Creado → En preparación → En tránsito → Entregado / No entregado*
+* Add a short comment and the responsible person's name.
+
+### 🔵 Track Order
+
+* Go to **"Seguimiento de Paquete"**.
+* Enter the tracking code to view all updates and the current status.
+* The history table will adapt to desktop or mobile view automatically.
+
+---
+
+## 📱 Responsive Design
+
+The website adapts to two main screen sizes:
+
+| Device               | Layout Behavior                                                       |
+| -------------------- | --------------------------------------------------------------------- |
+| **Desktop (≥992px)** | Navigation bar horizontal, wide cards, tables for updates.            |
+| **Mobile (≤768px)**  | Buttons stacked vertically, forms compressed, updates shown as cards. |
+
+---
+
+## 👨‍💻 Author
+
+**Alfonso Enrique Ochaita Moreno**
+*Universidad Mesoamericana de Guatemala*
+📚 *Course:* Programación Web
+🗓️ *Semester:* VI, 2025
+📧 Email: [alfonsochaita@gmail.com](mailto:alfonsochaita@gmail.com)
+🔗 GitHub: [github.com/SoyOchaita](https://github.com/SoyOchaita)
+
+---
+
+## 📜 License
+
+This project is for educational purposes and university evaluation only.
+You are free to fork and use it for non-commercial academic use.
+
+---
